@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Usage Alert Portal</title>
+  <link rel="stylesheet" th:href="@{/css/portal.css}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">Usage<span>Watch</span></a>
+  <nav aria-label="Main navigation"><a href="#dashboard">Dashboard</a><a href="#alerts">Alerts</a><a href="#entry">Add event</a></nav>
+  <span class="environment">DEVOPS PROJECT</span>
+</header>
+<main class="page-shell">
+  <section class="hero">
+    <div><p class="eyebrow">CUSTOMER OPERATIONS / DATA USAGE</p><h1>Usage, in view.</h1><p class="hero-copy">Spot customers nearing their data limit, review the event behind the alert, and act before service is interrupted.</p></div>
+    <a class="button button-primary" href="#entry">＋ Record usage</a>
+  </section>
+  <p class="notice" th:if="${successMessage}" th:text="${successMessage}" role="status"></p>
+  <section class="metrics" aria-label="Usage summary">
+    <article class="metric-card"><span class="metric-label">Customers in view</span><strong th:text="${summary.customerCount}">0</strong><span class="metric-hint">Unique customer IDs</span></article>
+    <article class="metric-card"><span class="metric-label">Open usage alerts</span><strong class="metric-alert" th:text="${summary.alertCount}">0</strong><span class="metric-hint">At or above 80% of quota</span></article>
+    <article class="metric-card"><span class="metric-label">Average quota used</span><strong><span th:text="${summary.averageUsagePercent}">0</span><small>%</small></strong><span class="metric-hint">Across visible records</span></article>
+  </section>
+  <section class="content-grid">
+    <div class="panel dashboard-panel" id="dashboard">
+      <div class="panel-heading"><div><p class="eyebrow">LIVE REGISTER</p><h2>Customer usage</h2></div>
+        <form class="search-form" method="get" action="/">
+          <label class="sr-only" for="usage-search">Search customer, ID, or plan</label>
+          <input id="usage-search" name="q" th:value="${query}" placeholder="Search customer, ID, or plan">
+          <button class="button button-outline" type="submit">Search</button>
+        </form>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Customer</th><th>Plan</th><th>Usage</th><th>Period</th><th>Status</th><th><span class="sr-only">Details</span></th></tr></thead>
+        <tbody>
+        <tr th:each="usage : ${records}">
+          <td><a class="customer-link" th:href="@{/usage/{id}(id=${usage.id})}" th:text="${usage.customerName}">Customer name</a><span class="subtext" th:text="${usage.customerId}">CUS-0000</span></td>
+          <td th:text="${usage.planName}">Plan</td>
+          <td><strong th:text="|${usage.usedGb} GB|">0 GB</strong><span class="subtext" th:text="|of ${usage.quotaGb} GB quota|">of 0 GB quota</span></td>
+          <td th:text="${usage.billingPeriod}">2026-10</td>
+          <td><span class="status-pill" th:classappend="${#strings.toLowerCase(usage.status)}" th:text="${usage.statusLabel}">Status</span><span class="subtext" th:text="|${usage.usagePercent}% used|">0% used</span></td>
+          <td><a class="text-link" th:href="@{/usage/{id}(id=${usage.id})}">Details →</a></td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(records)}"><td colspan="6" class="empty-state">No matching usage events. Try another search or add a record.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <aside class="panel alert-panel" id="alerts">
+      <div class="panel-heading"><div><p class="eyebrow">ACTION REQUIRED</p><h2>Usage alerts</h2></div><span class="count-badge" th:text="${#lists.size(alerts)}">0</span></div>
+      <div th:if="${#lists.isEmpty(alerts)}" class="empty-alert">No customers are near their quota.</div>
+      <a class="alert-row" th:each="alert : ${alerts}" th:href="@{/usage/{id}(id=${alert.id})}">
+        <span class="alert-icon" th:classappend="${#strings.toLowerCase(alert.status)}">!</span>
+        <span class="alert-copy"><strong th:text="${alert.customerName}">Customer</strong><span th:text="|${alert.usagePercent}% of ${alert.quotaGb} GB|">Usage</span></span><span class="alert-arrow">›</span>
+      </a>
+    </aside>
+  </section>
+  <section class="panel entry-panel" id="entry">
+    <div class="panel-heading"><div><p class="eyebrow">DATA / EVENT ENTRY</p><h2>Record a usage event</h2></div><span class="quiet-tag">Manual or simulated feed</span></div>
+    <form class="entry-form" th:action="@{/usage}" th:object="${newUsage}" method="post">
+      <label>Customer ID<input id="customer-id" th:field="*{customerId}" placeholder="CUS-1005" required maxlength="40"></label>
+      <label>Customer name<input id="customer-name" th:field="*{customerName}" placeholder="Customer name" required maxlength="100"></label>
+      <label>Plan<input th:field="*{planName}" placeholder="Home Plus" required maxlength="60"></label>
+      <label>Billing period<input th:field="*{billingPeriod}" placeholder="2026-10" required maxlength="20"></label>
+      <label>Used (GB)<input th:field="*{usedGb}" type="number" min="0" step="0.1" placeholder="82.5" required></label>
+      <label>Quota (GB)<input th:field="*{quotaGb}" type="number" min="0.01" step="0.1" placeholder="100" required></label>
+      <label class="form-wide">Source<input th:field="*{source}" placeholder="Manual entry or data feed" maxlength="80"></label>
+      <p class="form-error form-wide" th:if="${#fields.hasErrors('*')}" th:errors="*{*}">Check the highlighted values.</p>
+      <div class="form-actions form-wide"><span>Alerts are raised at 80% usage and above.</span><button class="button button-primary" id="add-usage" type="submit">Save usage event</button></div>
+    </form>
+  </section>
+  <footer><span>UsageWatch · DevOps course project</span><span>Demo records only · no live customer data</span></footer>
+</main>
+</body>
+</html>

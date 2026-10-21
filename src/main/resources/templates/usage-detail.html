@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title th:text="|Usage detail · ${usage.customerName}|">Usage detail</title><link rel="stylesheet" th:href="@{/css/portal.css}"></head>
+<body>
+<header class="topbar"><a class="brand" href="/">Usage<span>Watch</span></a><nav aria-label="Main navigation"><a href="/">Dashboard</a><a href="/#alerts">Alerts</a></nav><span class="environment">CUSTOMER DETAIL</span></header>
+<main class="page-shell detail-shell">
+  <a class="back-link" href="/">← Back to dashboard</a>
+  <section class="hero detail-hero"><div><p class="eyebrow" th:text="|${usage.customerId} / USAGE EVENT|">CUS-0000 / USAGE EVENT</p><h1 th:text="${usage.customerName}">Customer name</h1><p class="hero-copy">Review this customer's plan, billing period, and latest recorded consumption.</p></div><span class="status-pill status-large" th:classappend="${#strings.toLowerCase(usage.status)}" th:text="${usage.statusLabel}">Status</span></section>
+  <section class="detail-grid">
+    <article class="panel detail-stat"><span class="metric-label">Usage</span><strong th:text="|${usage.usedGb} GB|">0 GB</strong><span class="metric-hint" th:text="|${usage.usagePercent}% of ${usage.quotaGb} GB quota|">0% used</span><div class="usage-track"><span th:style="|width: ${usage.usagePercent.min(T(java.math.BigDecimal).valueOf(100))}%|"></span></div></article>
+    <article class="panel detail-stat"><span class="metric-label">Plan</span><strong class="detail-text" th:text="${usage.planName}">Plan</strong><span class="metric-hint" th:text="|Billing period: ${usage.billingPeriod}|">Billing period</span></article>
+    <article class="panel detail-stat"><span class="metric-label">Event source</span><strong class="detail-text" th:text="${usage.source} ?: 'Not specified'">Source</strong><span class="metric-hint" th:text="${#temporals.format(usage.recordedAt, 'dd MMM yyyy HH:mm')}">Recorded time</span></article>
+  </section>
+  <section class="panel detail-explanation"><p class="eyebrow">STATUS RULE</p><h2 th:text="${usage.statusLabel}">Status</h2><p th:if="${usage.status.name() == 'EXCEEDED'}">Recorded usage has reached or passed the plan quota. Contact the customer before applying any service action.</p><p th:if="${usage.status.name() == 'WARNING'}">Recorded usage is at least 80% of the plan quota. This record appears in the alert queue.</p><p th:if="${usage.status.name() == 'NORMAL'}">Recorded usage is below the 80% warning threshold.</p></section>
+</main>
+</body>
+</html>

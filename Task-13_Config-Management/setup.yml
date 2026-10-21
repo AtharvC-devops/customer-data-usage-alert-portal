@@ -1,0 +1,78 @@
+---
+- name: Configure and deploy the Customer Data Usage Alert Portal
+  hosts: webservers
+  become: true
+  vars:
+    app_image: customer-usage-alert-portal:1.0
+    app_container: customer-usage-alert-portal
+    app_port: 8085
+    app_root: /opt/customer-usage-alert-portal
+    app_data: /opt/customer-usage-alert-portal/data
+    app_logs: /var/log/customer-usage-alert-portal
+  tasks:
+    - name: Install runtime and administration packages
+      ansible.builtin.apt:
+        name:
+          - openjdk-17-jre-headless
+          - docker.io
+          - git
+          - maven
+          - python3
+          - python3-docker
+        state: present
+        update_cache: true
+
+    - name: Ensure docker group exists
+      ansible.builtin.group:
+        name: docker
+        state: present
+
+    - name: Create application operator
+      ansible.builtin.user:
+        name: appuser
+        groups: docker
+        append: true
+        create_home: true
+        shell: /bin/bash
+        state: present
+
+    - name: Create application and log directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: appuser
+        group: appuser
+        mode: "0750"
+      loop:
+        - "{{ app_root }}"
+        - "{{ app_logs }}"
+
+    - name: Prepare the data directory for the non-root container process
+      ansible.builtin.file:
+        path: "{{ app_data }}"
+        state: directory
+        owner: "10001"
+        group: "10001"
+        mode: "0750"
+
+    - name: Enable and start Docker
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Run the portal container
+      community.docker.docker_container:
+        name: "{{ app_container }}"
+        image: "{{ app_image }}"
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "{{ app_port }}:8085"
+        env:
+          SERVER_PORT: "8085"
+          DB_URL: jdbc:h2:file:/data/usage-alert;AUTO_SERVER=TRUE
+        volumes:
+          - "{{ app_data }}:/data"
+        pull: true
+

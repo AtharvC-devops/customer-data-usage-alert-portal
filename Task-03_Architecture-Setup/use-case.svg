@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="610" viewBox="0 0 1050 610" role="img" aria-labelledby="title desc">
+  <title id="title">Usage portal use cases</title><desc id="desc">Operations and support actors use dashboard, search, entry, alerts, and customer details; DevOps configures deployments.</desc>
+  <rect width="1050" height="610" rx="20" fill="#f4f8f7"/>
+  <text x="40" y="48" font-family="Arial" font-size="14" font-weight="700" letter-spacing="2" fill="#007f78">USE CASES</text>
+  <rect x="290" y="80" width="540" height="480" rx="18" fill="#fff" stroke="#b9d2cf" stroke-width="2"/>
+  <text x="560" y="112" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700" fill="#132d34">Customer Data Usage Alert Portal</text>
+  <g fill="#e0f4ef" stroke="#75b9aa" stroke-width="1.5">
+    <ellipse cx="560" cy="180" rx="175" ry="30"/><ellipse cx="560" cy="255" rx="175" ry="30"/><ellipse cx="560" cy="330" rx="175" ry="30"/><ellipse cx="560" cy="405" rx="175" ry="30"/><ellipse cx="560" cy="480" rx="175" ry="30"/>
+  </g>
+  <g font-family="Arial" font-size="14" text-anchor="middle" fill="#132d34">
+    <text x="560" y="185">View usage dashboard and summaries</text><text x="560" y="260">Search customer, ID, or plan</text><text x="560" y="335">Add a usage event</text><text x="560" y="410">Review alert and status</text><text x="560" y="485">Open customer detail</text>
+  </g>
+  <g stroke="#8da5a8" stroke-width="1.5">
+    <path d="M205 200L385 180"/><path d="M205 220L385 255"/><path d="M205 240L385 330"/><path d="M845 330L720 405"/><path d="M845 350L735 480"/><path d="M845 370L735 180"/>
+  </g>
+  <g fill="#132d34" font-family="Arial" font-size="13" text-anchor="middle">
+    <circle cx="135" cy="220" r="24" fill="#fff" stroke="#007f78" stroke-width="2"/><path d="M135 245v80m-33-48h66m-33 48-28 42m28-42 28 42" stroke="#007f78" stroke-width="4" fill="none"/>
+    <text x="135" y="387" font-weight="700">Operations agent</text>
+    <circle cx="915" cy="350" r="24" fill="#fff" stroke="#007f78" stroke-width="2"/><path d="M915 375v80m-33-48h66m-33 48-28 42m28-42 28 42" stroke="#007f78" stroke-width="4" fill="none"/>
+    <text x="915" y="527" font-weight="700">Support / DevOps</text>
+  </g>
+</svg>
