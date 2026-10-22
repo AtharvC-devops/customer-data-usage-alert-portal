@@ -5,15 +5,13 @@ import edu.devops.usageportal.model.UsageStatus;
 import edu.devops.usageportal.repository.UsageRecordRepository;
 import edu.devops.usageportal.service.PortalSummary;
 import edu.devops.usageportal.service.UsageService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.data.domain.Sort;
-
-import java.math.BigDecimal;
 import java.lang.reflect.Proxy;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Sort;
 
 import static org.assertj.core.api.Assertions.assertThat;
