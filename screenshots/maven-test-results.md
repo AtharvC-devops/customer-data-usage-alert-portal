@@ -1,6 +1,6 @@
 # Maven verification evidence
 
-**Run:** 23 October 2026, from the `develop`-equivalent project checkout  
+**Run:** 23 October 2026, from the local `feature/alert-workflow` checkout  
 **Command:** `mvn -B clean verify`  
 **Result:** BUILD SUCCESS — 11 tests, 0 failures, 0 errors, 0 skipped.  
 **Coverage:** HtmlUnit app/form smoke, dashboard Selenium journey, UsageService search/summary, configurable threshold validation, and usage status boundaries.
