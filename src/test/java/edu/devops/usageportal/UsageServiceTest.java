@@ -40,7 +40,7 @@ class UsageServiceTest {
                     }
                     return null;
                 });
-        service = new UsageService(repository);
+        service = new UsageService(repository, new BigDecimal("80"));
     }
 
     @Test
