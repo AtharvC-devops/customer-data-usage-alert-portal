@@ -29,7 +29,7 @@ Git branch → Jenkins checkout → Maven verification → JUnit publication and
 
 ## Evidence
 
-Add actual screenshots and run results to screenshots/ after using your GitHub, Jenkins, Docker Hub, and Linux/WSL environment. This report does not claim those external runs happened.
+The latest local `mvn -B clean verify` run passed 11 tests (0 failures, 0 errors, 0 skipped); its Surefire summaries are in screenshots/. Atharv verified the Task 11 Docker Compose deployment in Ubuntu WSL2 on 23 October 2026: the image build succeeded, the project container was running and healthy, and `/actuator/health` returned HTTP 200 with `status=UP`. Raw container and health outputs are in `screenshots/task-11-containers.txt`, `screenshots/task-11-container-health.txt`, and `screenshots/task-11-health.txt`. Spring Boot 3.3.5 ran on Java 17 and H2 connected to the configured file database, as reported by Atharv. The browser dashboard has not been verified or captured. Jenkins pipeline execution, Docker Hub publishing, and Ansible provisioning are not claimed here.
 
 ## Limitations
 

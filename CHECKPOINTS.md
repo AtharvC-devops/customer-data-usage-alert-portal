@@ -34,7 +34,8 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 - [x] Define the selected stack, data model, and REST API list.
 - [x] Provide local setup and health-check instructions.
 - [x] Implement the working Spring Boot application in src/.
-- [x] Run the app locally and save the local setup screenshot (browser acceptance completed by Atharv).
+- [x] Run the app locally and complete browser acceptance (completed by Atharv).
+- [ ] Add a browser screenshot to this checkout if the course requires image evidence; no browser PNG is present under screenshots/ in the audited workspace.
 
 **Deliverable:** SRS, diagrams, model/API notes, and a running local setup.
 
@@ -63,6 +64,8 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 - [x] Implement all five MVP functions and alert thresholds.
 - [x] Document a second feature branch, conflict-resolution exercise, and v1.0 tag.
 - [x] Merge the second feature PR (#7), record the actual rebase conflict resolution, and create the v1.0 release tag; see screenshots/git-conflict-resolution.txt and the GitHub PR history.
+- [x] Fix the stale UsageService test constructor in PR #8; latest clean local Maven run passes 11 tests.
+- [ ] Publish the annotated v1.0 tag (still local-only; exact command is in STUDENT_ACTIONS.md).
 
 **Deliverable:** Functional MVP, resolved conflict, tag, and updated backlog.
 
@@ -89,8 +92,9 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 
 - [x] Write the automated dashboard/form smoke and threshold tests; document live search/save/detail checks.
 - [x] Implement a Selenium WebDriver markup/form smoke test and failure screenshot capture.
-- [x] Run mvn clean verify locally and save the Surefire summary.
-- [x] Run the live search/save/detail checks in a local browser and capture evidence (completed by Atharv).
+- [x] Run `mvn -B clean verify` locally: 11 tests passed, 0 failures/errors/skips; save the Surefire summary.
+- [x] Run the live search/save/detail checks in a local browser (completed by Atharv).
+- [ ] Add the actual browser screenshot files to screenshots/ if required; the current checkout contains no browser PNGs.
 
 **Deliverable:** Test plan, Selenium scripts, Maven report, and failure screenshot mechanism.
 
@@ -108,7 +112,14 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 
 - [x] Add a non-root multi-stage Dockerfile and persistent-data Compose setup.
 - [x] Document image build, port mapping, logs, stop/start/restart, and removal commands.
-- [ ] Build and run the image on your machine and save the actual image/container evidence.
+- [x] Validate Compose configuration with `docker compose config`.
+- [x] Build and launch the image with `docker compose build portal` and `docker compose up -d`.
+- [x] Verify the container is running and healthy, and confirm the application and H2 startup in the logs.
+- [x] Verify `/actuator/health` returns HTTP 200 and `status=UP`.
+- [ ] Run the documented stop/start/restart/down lifecycle sequence; it is not yet verified.
+- [ ] Capture a browser dashboard screenshot if required by the course; browser verification is not recorded.
+
+**Verified execution (23 Oct 2026, run by Atharv in Ubuntu WSL2):** `docker compose config` passed; `docker compose build portal` succeeded; and `docker compose up -d` started the app. `customer-usage-alert-portal` is running and healthy from image `customer-usage-alert-portal:local`, with port 8085 published. Atharv confirmed in the application logs that Spring Boot 3.3.5 started on Java 17 and H2 connected at `jdbc:h2:file:/data/usage-alert`. `/actuator/health` returned HTTP 200 with `{"status":"UP","groups":["liveness","readiness"]}`. Raw container and health outputs are saved as `screenshots/task-11-containers.txt`, `screenshots/task-11-container-health.txt`, and `screenshots/task-11-health.txt`; a raw application log file is not present in the evidence folder. The browser dashboard has not been verified or captured. The Codex Windows shell cannot access Docker Desktop's named pipe; this does not affect the Ubuntu run reported above.
 
 **Deliverable:** Dockerfile, image details, command log, and running-container evidence.
 
@@ -150,4 +161,4 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 
 ## Evidence filenames
 
-Actual screenshots are saved under screenshots/. Additional evidence should be captured as actual GitHub, Jenkins, Docker Hub, and terminal output after those services run.
+Raw Surefire reports and the Compose configuration output are in screenshots/. The audited checkout contains no browser, Jenkins, Docker Hub, or Ansible screenshots yet. Add genuine evidence after running those services.

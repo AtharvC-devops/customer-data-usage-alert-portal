@@ -18,3 +18,5 @@ The embedded Tomcat web server listens on SERVER_PORT, default 8085. The contain
 3. Confirm the app health endpoint returns UP.
 4. Save pipeline stage view, deployment console lines, browser dashboard, and health-check evidence.
 
+For the first Jenkins job run, leave `BUILD_IMAGE`, `PUSH_IMAGE`, and `DEPLOY_LOCAL` disabled. Confirm the Maven test stage and archived jar first. Run Docker locally with the commands in `Task-11_Docker-Container/docker_commands.md`. Enable a Jenkins image or deployment parameter only after the Jenkins agent has access to the intended Docker daemon; record the actual build number and image tag.
+

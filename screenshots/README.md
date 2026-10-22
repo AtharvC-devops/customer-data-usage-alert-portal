@@ -1,3 +1,3 @@
-# Screenshot evidence
+# Evidence files
 
-Save genuine screenshots captured from the running app, GitHub, Jenkins, Docker Hub, and your Linux/WSL terminal here. The repository does not include fabricated screenshots. Required filenames are listed in CHECKPOINTS.md and the matching task folders.
+This folder contains raw Surefire summaries, Compose configuration output, and Task 11 Docker deployment results. The Task 11 raw outputs are `task-11-containers.txt`, `task-11-container-health.txt`, and `task-11-health.txt`; they record a running/healthy container and the HTTP health response. No browser dashboard screenshot, Jenkins, Docker Hub, or Ansible evidence is recorded here. Add genuine screenshots and command outputs only after capturing them from the real services; do not use mock or generated deployment evidence. Required evidence is listed in CHECKPOINTS.md and the matching task folders.

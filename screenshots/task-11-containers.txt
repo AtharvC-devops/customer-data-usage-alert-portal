@@ -1,0 +1,2 @@
+NAME                          IMAGE                               COMMAND                  SERVICE   CREATED         STATUS                   PORTS
+customer-usage-alert-portal   customer-usage-alert-portal:local   "java -jar /app/app.…"   portal    2 minutes ago   Up 2 minutes (healthy)   0.0.0.0:8085->8085/tcp, [::]:8085->8085/tcp

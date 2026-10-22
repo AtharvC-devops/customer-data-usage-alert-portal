@@ -4,13 +4,13 @@ The Jenkins Maven verification stage runs both the status-rule unit tests and Se
 
 ## Controlled defect drill
 
-Use a temporary feature branch or disposable clone:
+Use a temporary feature branch; do not merge it. This project's alert threshold is configurable, so the drill changes a test expectation rather than hard-coding an application threshold:
 
-1. Change the warning ratio in UsageRecord from 0.80 to 0.90.
-2. Push the temporary branch and run the Jenkins job. The test that expects warning at 80% should fail.
-3. Capture the failed stage and published report.
-4. Restore the value to 0.80, run Maven verification locally, commit the correction, and push the fix.
-5. Rerun the pipeline and confirm the test stage is green before any image or deploy stage begins.
+1. Create and push a short-lived branch from the latest `develop`.
+2. In `src/test/java/edu/devops/usageportal/UsageStatusTest.java`, inside `classifiesUsageAtWarningThresholdAsWarning`, temporarily change the expected status from `UsageStatus.WARNING` to `UsageStatus.NORMAL`.
+3. Commit and push that test-only change. In Jenkins, temporarily set the Pipeline job branch to `*/test/jenkins-failure-drill`, then build with all Docker parameters disabled. The status test should fail because 80% is a warning at the default threshold.
+4. Save the failed Jenkins console and JUnit report. Restore the expected value to `UsageStatus.WARNING`, commit and push the correction, and rerun the same Jenkins branch. Confirm the test stage succeeds.
+5. Restore the Pipeline job branch to `*/develop`. Do not merge the drill branch. Keep both actual build reports and the two commit IDs as evidence.
 
 Do not merge the deliberate defect. Keep the failure and correction screenshots from your own run.
 
