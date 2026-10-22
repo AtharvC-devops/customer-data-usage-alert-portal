@@ -73,9 +73,9 @@ pipeline {
                 sh '''
                     set -eu
                     docker rm -f customer-data-usage-alert-portal || true
-                    docker run -d --name customer-data-usage-alert-portal --restart unless-stopped -p 8085:8085 -e SERVER_PORT=8085 -e DB_URL="jdbc:h2:file:/data/usage-alert;AUTO_SERVER=TRUE" -e ALERT_THRESHOLD_PERCENT="$ALERT_THRESHOLD_PERCENT" -v usage-alert-data:/data "usage-alert:$BUILD_NUMBER"
+                    docker run -d --name customer-data-usage-alert-portal --restart unless-stopped -p 8086:8085 -e SERVER_PORT=8085 -e DB_URL="jdbc:h2:file:/data/usage-alert;AUTO_SERVER=TRUE" -e ALERT_THRESHOLD_PERCENT="$ALERT_THRESHOLD_PERCENT" -v usage-alert-data:/data "usage-alert:$BUILD_NUMBER"
                     for attempt in $(seq 1 20); do
-                      if curl --fail --silent http://localhost:8085/actuator/health >/dev/null; then
+                      if curl --fail --silent http://localhost:8086/actuator/health >/dev/null; then
                         exit 0
                       fi
                       sleep 3
