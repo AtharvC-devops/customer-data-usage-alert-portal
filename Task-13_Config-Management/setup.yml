@@ -3,10 +3,11 @@
   hosts: webservers
   become: true
   vars:
-    app_image: customer-usage-alert-portal:1.0
+    app_image: customer-usage-alert-portal:local
     app_container: customer-usage-alert-portal
     app_port: 8085
     alert_threshold_percent: "80"
+    manage_docker_engine: false
     app_root: /opt/customer-usage-alert-portal
     app_data: /opt/customer-usage-alert-portal/data
     app_logs: /var/log/customer-usage-alert-portal
@@ -15,13 +16,19 @@
       ansible.builtin.apt:
         name:
           - openjdk-17-jre-headless
-          - docker.io
           - git
           - maven
           - python3
           - python3-docker
         state: present
         update_cache: true
+
+    - name: Install Docker Engine when provisioning a native Linux host
+      ansible.builtin.apt:
+        name: docker.io
+        state: present
+        update_cache: true
+      when: manage_docker_engine | bool
 
     - name: Ensure docker group exists
       ansible.builtin.group:
@@ -61,6 +68,7 @@
         name: docker
         state: started
         enabled: true
+      when: manage_docker_engine | bool
 
     - name: Run the portal container
       community.docker.docker_container:
@@ -76,5 +84,6 @@
           ALERT_THRESHOLD_PERCENT: "{{ alert_threshold_percent }}"
         volumes:
           - "{{ app_data }}:/data"
-        pull: true
+        pull: never
+
 
