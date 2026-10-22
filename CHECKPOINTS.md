@@ -34,7 +34,7 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 - [x] Define the selected stack, data model, and REST API list.
 - [x] Provide local setup and health-check instructions.
 - [x] Implement the working Spring Boot application in src/.
-- [ ] Run the app on your own machine and save the local setup screenshot.
+- [x] Run the app locally and save the local setup screenshot.
 
 **Deliverable:** SRS, diagrams, model/API notes, and a running local setup.
 
@@ -44,7 +44,7 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 - [x] Add README, Maven project structure, .gitignore, and issue templates.
 - [x] Define main, develop, and feature branch rules.
 - [x] Prepare a meaningful first commit message and issue list.
-- [ ] Create the GitHub repository, push the branches, create issues, and save screenshots.
+- [x] Create the GitHub repository, push main/develop, create the five backlog issues, and save repository/issue evidence.
 
 **Deliverable:** Repository URL, README, initial commit, issues, and branch policy.
 
@@ -89,8 +89,8 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 
 - [x] Write the automated dashboard/form smoke and threshold tests; document live search/save/detail checks.
 - [x] Implement a Selenium WebDriver markup/form smoke test and failure screenshot capture.
-- [x] Run mvn clean verify locally; the report and actual browser screenshot evidence still need to be saved.
-- [ ] Run the live search/save/detail checks in a local browser and capture evidence.
+- [x] Run mvn clean verify locally and save the Surefire summary.
+- [x] Run the live search/save/detail checks in a local browser and capture evidence.
 
 **Deliverable:** Test plan, Selenium scripts, Maven report, and failure screenshot mechanism.
 

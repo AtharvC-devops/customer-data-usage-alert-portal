@@ -1,34 +1,8 @@
-# Steps that need your account or machine
+# Remaining steps requiring your account or machine
 
-The application, tests, task documents, pipeline, Docker files, and Ansible files are prepared. These remaining steps interact with your GitHub/Docker Hub accounts or need software/services on your own machine. Capture genuine screenshots only after running each step.
+You confirmed that the local browser acceptance check is complete. The GitHub repository, main/develop branches, five backlog issues, and screenshots for the repository, issue list, Git log, and local dashboard are already in place. I am handling the feature PR work.
 
-## Local browser acceptance check
-
-The automated HtmlUnit check exercises the packaged dashboard markup and form controls. Complete this live application check on your machine for the full search/save/detail journey:
-
-1. From this project folder, run `mvn spring-boot:run` and open http://localhost:8085.
-2. Search for `CUS-1003`; confirm Kabir Joshi remains and unrelated rows are filtered out.
-3. Add a record with ID `CUS-23102C0016`, name `Atharv Chikane`, plan `Home Plus`, billing period `2026-10`, used `91`, quota `100`, and source `Manual demo entry`.
-4. Confirm it appears as an approaching-limit alert, open its details, and confirm the usage, status, and source.
-5. Save a real browser screenshot under `screenshots/local-dashboard.png`, then stop the app with Ctrl+C.
-
-## GitHub repository, issues, branches, and pull request
-
-1. Sign in to GitHub and create an empty public or private repository named customer-data-usage-alert-portal. Do not add a second README or license during creation.
-2. Open this project folder in a terminal, configure your Git name/email if needed, then run:
-
-       git init -b main
-       git add .
-       git commit -m "Add customer usage alert portal and DevOps project plan"
-       git branch develop
-       git remote add origin https://github.com/YOUR-USERNAME/customer-data-usage-alert-portal.git
-       git push -u origin main
-       git push -u origin develop
-
-3. Replace the repository URL placeholder in Task-04_Git-GitHub-Init/repo_url.md and commit it.
-4. Create issues from the templates in .github/ISSUE_TEMPLATE. The ready-to-file list is in Task-04_Git-GitHub-Init/issues_to_create.md.
-5. Push feature/usage-dashboard and feature/alert-workflow branches, open pull requests to develop, review them, and merge. The branch practice is documented in Task-05_Feature-Branching/.
-6. Capture the repository, issue list, PR review/merge, and git log in screenshots/ using the names listed in each task folder.
+Only the external CI/CD and provisioning steps remain here. Genuine evidence should be captured after running the actual services.
 
 ## Jenkins
 

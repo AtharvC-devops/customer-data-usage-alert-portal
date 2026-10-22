@@ -9,6 +9,8 @@ The automated suite uses Selenium WebDriver with headless HtmlUnit to exercise t
 | RULE-01 | Below warning | UsageStatusTest.classifiesUsageBelowWarningThresholdAsNormal | NORMAL and calculated percent |
 | RULE-02 | At warning | UsageStatusTest.classifiesUsageAtWarningThresholdAsWarning | WARNING at 80% |
 | RULE-03 | At quota | UsageStatusTest.classifiesUsageAtQuotaAsExceeded | EXCEEDED at 100% |
+| SVC-01 | Search normalization | UsageServiceTest.searchTrimsQueryAndLooksAcrossCustomerNameIdAndPlan | Trimmed text reaches all three search fields with descending date order |
+| SVC-02 | Summary indicators | UsageServiceTest.summaryCountsDistinctCustomersAndWarningOrExceededRecords | Distinct customer count, alert count, and one-decimal average are correct |
 
 ## Run
 
