@@ -29,7 +29,7 @@ Git branch → Jenkins checkout → Maven verification → JUnit publication and
 
 ## Evidence
 
-Add actual screenshots and run results to screenshots/ after using your GitHub, Jenkins, Docker Hub, and Linux/WSL environment. This report does not claim those external runs happened.
+The latest local `mvn -B clean verify` run passed 11 tests (0 failures, 0 errors, 0 skipped); its Surefire summaries are in screenshots/. Docker Compose configuration and the Ansible YAML files parse locally. These checks do not prove a Docker Engine deployment or Ansible playbook run. Add actual screenshots and run results after using Jenkins, Docker Hub, and the Linux/WSL environment. No Jenkins, Docker Engine, or Ansible provisioning run is claimed here.
 
 ## Limitations
 
@@ -38,4 +38,5 @@ No real data source, authentication, notification sender, production DB, or high
 ## Future enhancements
 
 Add secure operator login, a real ingestion adapter, notification delivery, PostgreSQL, audit history, pagination, and a staging environment.
+
 
