@@ -6,6 +6,7 @@
     app_image: customer-usage-alert-portal:1.0
     app_container: customer-usage-alert-portal
     app_port: 8085
+    alert_threshold_percent: "80"
     app_root: /opt/customer-usage-alert-portal
     app_data: /opt/customer-usage-alert-portal/data
     app_logs: /var/log/customer-usage-alert-portal
@@ -72,6 +73,7 @@
         env:
           SERVER_PORT: "8085"
           DB_URL: jdbc:h2:file:/data/usage-alert;AUTO_SERVER=TRUE
+          ALERT_THRESHOLD_PERCENT: "{{ alert_threshold_percent }}"
         volumes:
           - "{{ app_data }}:/data"
         pull: true

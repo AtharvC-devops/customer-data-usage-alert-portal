@@ -8,7 +8,7 @@
 | Searchable dashboard | Search covers customer ID, name, and plan |
 | Summary indicators | Customer count, alert count, average usage percentage |
 | Status drill-down | Customer link opens a usage detail page |
-| Alert/exception view | 80% warning and 100% exceeded states are highlighted |
+| Alert/exception view | Configurable warning percentage (80% by default) and 100% exceeded states are highlighted |
 
 ## Second feature branch exercise
 

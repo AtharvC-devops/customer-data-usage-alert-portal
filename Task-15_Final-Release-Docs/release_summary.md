@@ -2,7 +2,7 @@
 
 ## Included
 
-- Usage event entry, searchable dashboard, summary indicators, customer detail, warning/exception view.
+- Usage event entry, searchable dashboard, summary indicators, customer detail, and a configurable warning threshold (80% default).
 - REST API and health endpoint.
 - Maven unit and Selenium WebDriver test suites.
 - Jenkins pipeline with JUnit publication, jar archive, and optional Docker build/publish/deploy stages.
@@ -12,7 +12,7 @@
 
 - [x] Code and coursework documentation are included in the local project.
 - [x] Maven and Selenium checks are configured.
-- [ ] Successful local Maven run recorded.
+- [x] Successful local Maven run recorded (9 tests passed; reports saved in screenshots/).
 - [ ] Jenkins pipeline run recorded.
 - [ ] Docker Hub image and deployed container verified.
 - [ ] Ansible provisioning, idempotency, health, and rollback evidence captured.

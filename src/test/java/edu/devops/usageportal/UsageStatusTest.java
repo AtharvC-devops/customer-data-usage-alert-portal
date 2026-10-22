@@ -26,6 +26,16 @@ class UsageStatusTest {
         assertThat(record("100", "100").getStatus()).isEqualTo(UsageStatus.EXCEEDED);
     }
 
+    @Test
+    void usesConfiguredWarningThreshold() {
+        UsageRecord record = record("74.9", "100");
+        record.setWarningThresholdPercent(new BigDecimal("75"));
+        assertThat(record.getStatus()).isEqualTo(UsageStatus.NORMAL);
+
+        record.setUsedGb(new BigDecimal("75"));
+        assertThat(record.getStatus()).isEqualTo(UsageStatus.WARNING);
+    }
+
     private UsageRecord record(String used, String quota) {
         return new UsageRecord("CUS-TEST", "Test Customer", "Test Plan", "2026-10",
                 new BigDecimal(used), new BigDecimal(quota), "Test");

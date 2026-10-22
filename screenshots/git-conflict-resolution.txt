@@ -1,0 +1,16 @@
+Git conflict and rebase evidence
+
+Base update after PR #6 merged into develop:
+  git fetch origin develop
+  git rebase origin/develop
+
+Git reported conflicts in CHECKPOINTS.md, STUDENT_ACTIONS.md, and screenshots/maven-test-results.md. I resolved them by retaining the completed Task 3/4/9 evidence and the latest 9-test verification result, then staged the resolved files.
+
+Resolution commit output:
+  [detached HEAD 0d44699] Add configurable usage alert threshold
+  29 files changed, 188 insertions(+), 69 deletions(-)
+
+Rebase completion output:
+  Successfully rebased and updated refs/heads/feature/alert-workflow.
+
+The related feature PR is #7, targeting develop. The v1.0 tag is created after that PR is merged.

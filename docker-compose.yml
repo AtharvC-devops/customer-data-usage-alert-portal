@@ -9,6 +9,7 @@ services:
     environment:
       SERVER_PORT: "8085"
       DB_URL: "jdbc:h2:file:/data/usage-alert;AUTO_SERVER=TRUE"
+      ALERT_THRESHOLD_PERCENT: "${ALERT_THRESHOLD_PERCENT:-80}"
     volumes:
       - usage-alert-data:/data
     restart: unless-stopped

@@ -1,0 +1,39 @@
+name: customer-data-usage-alert-portal
+services:
+  portal:
+    build:
+      context: C:\Users\athar\Documents\Codex\2026-10-21\https-github-com-chetan-katkar-devops\outputs\customer-data-usage-alert-portal
+      dockerfile: Dockerfile
+    container_name: customer-usage-alert-portal
+    environment:
+      ALERT_THRESHOLD_PERCENT: "80"
+      DB_URL: jdbc:h2:file:/data/usage-alert;AUTO_SERVER=TRUE
+      SERVER_PORT: "8085"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - wget --quiet --tries=1 --spider http://127.0.0.1:8085/actuator/health || exit 1
+      timeout: 3s
+      interval: 30s
+      retries: 3
+      start_period: 30s
+    image: customer-usage-alert-portal:local
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 8085
+        published: "8085"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: volume
+        source: usage-alert-data
+        target: /data
+        volume: {}
+networks:
+  default:
+    name: customer-data-usage-alert-portal_default
+volumes:
+  usage-alert-data:
+    name: customer-data-usage-alert-portal_usage-alert-data
