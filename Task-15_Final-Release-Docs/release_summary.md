@@ -12,8 +12,9 @@
 
 - [x] Code and coursework documentation are included in the local project.
 - [x] Maven and Selenium checks are configured.
-- [x] Successful local Maven run recorded (9 tests passed; reports saved in screenshots/).
+- [x] Successful local Maven run recorded (11 tests passed; reports saved in screenshots/).
 - [ ] Jenkins pipeline run recorded.
 - [ ] Docker Hub image and deployed container verified.
 - [ ] Ansible provisioning, idempotency, health, and rollback evidence captured.
+
 
