@@ -154,5 +154,5 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 
 ## Evidence filenames
 
-Actual screenshots are saved under screenshots/. Additional evidence should be captured as actual GitHub, Jenkins, Docker Hub, and terminal output after those services run.
+Raw Surefire reports and the Compose configuration output are in screenshots/. The audited checkout contains no browser, Jenkins, Docker Hub, or Ansible screenshots yet. Add genuine evidence after running those services.
 
