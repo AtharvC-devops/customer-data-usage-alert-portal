@@ -1,0 +1,18 @@
+Git conflict, PR, and release-tag evidence
+
+Base update after PR #6 merged into develop:
+  git fetch origin develop
+  git rebase origin/develop
+
+Git reported conflicts in CHECKPOINTS.md, STUDENT_ACTIONS.md, and screenshots/maven-test-results.md. I resolved them by retaining the completed Task 3/4/9 evidence and the latest 9-test verification result, then staged the resolved files.
+
+Resolution commit output:
+  [detached HEAD 0d44699] Add configurable usage alert threshold
+  29 files changed, 188 insertions(+), 69 deletions(-)
+
+Rebase completion output:
+  Successfully rebased and updated refs/heads/feature/alert-workflow.
+
+PR #7 was merged into develop at 72b7afb442ddbc88207ecde07713a84e78f8980d. An annotated local v1.0 tag was created at that merge commit; its local tag object is 714f744f3d2b8a668c817be6cee048b82f73abdd.
+
+The attempted `git push origin refs/tags/v1.0` failed because Windows Git Credential Manager could not start (`NtCreateDirectoryObject ... 0xC0000022`). Run that command from this project folder with your GitHub Git session to publish the tag.

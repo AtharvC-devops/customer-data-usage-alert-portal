@@ -62,7 +62,7 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 
 - [x] Implement all five MVP functions and alert thresholds.
 - [x] Document a second feature branch, conflict-resolution exercise, and v1.0 tag.
-- [ ] Complete the second PR merge, verify the conflict resolution and tag, and save real terminal/GitHub evidence.
+- [x] Merge the second feature PR (#7), record the actual rebase conflict resolution, and create the v1.0 release tag; see screenshots/git-conflict-resolution.txt and the GitHub PR history.
 
 **Deliverable:** Functional MVP, resolved conflict, tag, and updated backlog.
 
