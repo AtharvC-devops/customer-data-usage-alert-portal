@@ -1,26 +1,27 @@
 # Docker Image and Container Lifecycle
 
-Build an image from the project root:
+Run the following from Ubuntu after Docker Desktop WSL integration is enabled. From the repository root, build the Compose image and start the app:
 
-    docker build -t customer-usage-alert-portal:1.0 .
+    docker compose config
+    docker compose build portal
+    docker compose up -d
 
-Start the portal on port 8085 with a named data volume:
+Compose builds `customer-usage-alert-portal:local`, publishes port 8085, and keeps H2 data in the `usage-alert-data` named volume. Confirm the actual container, health endpoint, and logs:
 
-    docker run -d --name usage-alert -p 8085:8085 -v usage-alert-data:/data customer-usage-alert-portal:1.0
-
-Inspect the image, container, application log, and health endpoint:
-
-    docker image inspect customer-usage-alert-portal:1.0
-    docker ps
-    docker logs usage-alert
-    curl http://localhost:8085/actuator/health
+    docker image inspect customer-usage-alert-portal:local
+    docker compose ps
+    docker compose logs --tail 50 portal
+    curl --fail http://localhost:8085/actuator/health
 
 Exercise the requested lifecycle:
 
-    docker stop usage-alert
-    docker start usage-alert
-    docker restart usage-alert
-    docker rm -f usage-alert
+    docker compose stop
+    docker compose start
+    docker compose restart
+    docker compose down
+
+`docker compose down` removes the container and network but keeps `usage-alert-data`; do not add `--volumes` if you want to preserve its data. Capture real terminal output and a screenshot of the app only after these commands succeed.
 
 The Dockerfile creates a non-root runtime user. The H2 data directory is mounted at /data so deleting the container does not delete the named volume.
+
 
