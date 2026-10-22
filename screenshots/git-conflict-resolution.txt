@@ -1,4 +1,4 @@
-Git conflict and rebase evidence
+Git conflict, PR, and release-tag evidence
 
 Base update after PR #6 merged into develop:
   git fetch origin develop
@@ -13,4 +13,6 @@ Resolution commit output:
 Rebase completion output:
   Successfully rebased and updated refs/heads/feature/alert-workflow.
 
-The related feature PR is #7, targeting develop. The v1.0 tag is created after that PR is merged.
+PR #7 was merged into develop at 72b7afb442ddbc88207ecde07713a84e78f8980d. An annotated local v1.0 tag was created at that merge commit; its local tag object is 714f744f3d2b8a668c817be6cee048b82f73abdd.
+
+The attempted `git push origin refs/tags/v1.0` failed because Windows Git Credential Manager could not start (`NtCreateDirectoryObject ... 0xC0000022`). Run that command from this project folder with your GitHub Git session to publish the tag.
