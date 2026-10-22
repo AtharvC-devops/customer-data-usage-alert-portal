@@ -1,7 +1,5 @@
 # Repository URL
 
-**Repository:** Not created yet. Create an empty repository named customer-data-usage-alert-portal under your GitHub account, push this project, then replace this line with the real URL.
+**Repository:** https://github.com/AtharvC-devops/customer-data-usage-alert-portal
 
-**Expected URL:** https://github.com/AtharvC-devops/customer-data-usage-alert-portal
-
-Use the account steps in STUDENT_ACTIONS.md. No remote repository or screenshot is being claimed yet.
+The repository, main/develop branches, and five starter issues are present. See screenshots/repository.png and screenshots/issue-list.png for saved evidence. Pull request review and merge evidence is still pending GitHub connection.

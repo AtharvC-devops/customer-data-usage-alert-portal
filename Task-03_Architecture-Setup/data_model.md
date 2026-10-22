@@ -13,7 +13,7 @@
 | quotaGb | Decimal | Required, greater than zero |
 | source | String | Optional, max 80 characters |
 | recordedAt | Instant | Set at persistence time |
-| status | Derived enum | NORMAL below 80%, WARNING from 80%, EXCEEDED at quota or higher |
+| status | Derived enum | NORMAL below the configured warning percentage (80% default), WARNING from that point, EXCEEDED at quota or higher |
 | usagePercent | Derived decimal | usedGb / quotaGb × 100, rounded to one decimal |
 
 Status and percentage are derived from the usage and quota values rather than stored as separate mutable fields.

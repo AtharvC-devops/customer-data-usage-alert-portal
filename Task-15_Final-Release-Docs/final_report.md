@@ -16,7 +16,7 @@ The Spring Boot application serves a Thymeleaf interface and JSON API. Spring Da
 
 ## Implementation
 
-- Usage status is derived from used GB and quota: warning at 80%, exceeded at 100%.
+- Usage status is derived from used GB and quota: warning begins at ALERT_THRESHOLD_PERCENT (80% default), and usage at 100% or above is exceeded.
 - Server-side validation rejects invalid identifiers, usage, and quota.
 - Dashboard search covers customer ID, name, and plan.
 - Selenium WebDriver journeys cover the dashboard/search and add/detail flow.
@@ -37,5 +37,5 @@ No real data source, authentication, notification sender, production DB, or high
 
 ## Future enhancements
 
-Add secure operator login, configurable thresholds, a real ingestion adapter, notification delivery, PostgreSQL, audit history, pagination, and a staging environment.
+Add secure operator login, a real ingestion adapter, notification delivery, PostgreSQL, audit history, pagination, and a staging environment.
 

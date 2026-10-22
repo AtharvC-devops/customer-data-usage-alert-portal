@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,7 +19,7 @@ import java.time.Instant;
 @Entity
 @Table(name = "usage_records")
 public class UsageRecord {
-    private static final BigDecimal WARNING_RATIO = new BigDecimal("0.80");
+    private static final BigDecimal DEFAULT_WARNING_THRESHOLD_PERCENT = new BigDecimal("80");
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,6 +53,9 @@ public class UsageRecord {
     private String source;
 
     private Instant recordedAt;
+
+    @Transient
+    private BigDecimal warningThresholdPercent = DEFAULT_WARNING_THRESHOLD_PERCENT;
 
     public UsageRecord() {
     }
@@ -90,10 +94,15 @@ public class UsageRecord {
         if (usedGb.compareTo(quotaGb) >= 0) {
             return UsageStatus.EXCEEDED;
         }
-        if (usedGb.compareTo(quotaGb.multiply(WARNING_RATIO)) >= 0) {
+        if (usedGb.multiply(BigDecimal.valueOf(100))
+                .compareTo(quotaGb.multiply(warningThresholdPercent)) >= 0) {
             return UsageStatus.WARNING;
         }
         return UsageStatus.NORMAL;
+    }
+
+    public void setWarningThresholdPercent(BigDecimal warningThresholdPercent) {
+        this.warningThresholdPercent = warningThresholdPercent;
     }
 
     public String getStatusLabel() {

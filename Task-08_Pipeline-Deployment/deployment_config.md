@@ -6,6 +6,7 @@ The course MVP is packaged as an executable Spring Boot jar. Its embedded Tomcat
 |---|---|---|
 | SERVER_PORT | 8085 | HTTP listener and Docker port mapping |
 | DB_URL | H2 file under data/ locally; /data in Docker | Embedded database location |
+| ALERT_THRESHOLD_PERCENT | 80 | Usage percentage that starts a warning alert; configurable from 0 to 100 |
 | DB_USERNAME | sa | H2 demonstration account |
 | DB_PASSWORD | empty | H2 demonstration password |
 

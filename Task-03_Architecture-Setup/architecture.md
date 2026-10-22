@@ -4,7 +4,7 @@
 
 ## Request path
 
-Browser requests render through Spring MVC and Thymeleaf. The JSON API uses the same service layer. UsageService reads and writes UsageRecord entities through Spring Data JPA to the embedded H2 database. Alert state is derived from each saved record, so the web page and API apply the same 80% and 100% rules.
+Browser requests render through Spring MVC and Thymeleaf. The JSON API uses the same service layer. UsageService reads and writes UsageRecord entities through Spring Data JPA to the embedded H2 database. Alert state is derived from each saved record, so the web page and API apply the same configurable warning percentage (80% by default) and 100% exceeded rule.
 
 ## Delivery path
 
