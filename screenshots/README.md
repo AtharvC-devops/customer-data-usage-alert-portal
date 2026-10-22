@@ -1,3 +1,4 @@
-# Screenshot evidence
+# Evidence files
 
-Save genuine screenshots captured from the running app, GitHub, Jenkins, Docker Hub, and your Linux/WSL terminal here. The repository does not include fabricated screenshots. Required filenames are listed in CHECKPOINTS.md and the matching task folders.
+This folder contains the raw Surefire summaries and Compose configuration output. The audited checkout currently has no browser, Jenkins, Docker Hub, or Ansible screenshots. Add genuine screenshots and command outputs only after capturing them from the real services; do not use mock or generated deployment evidence. Required evidence is listed in CHECKPOINTS.md and the matching task folders.
+
