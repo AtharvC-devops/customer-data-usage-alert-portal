@@ -68,7 +68,7 @@ Jenkins LTS currently requires Java 21 or newer. The application targets Java 17
 ps -p 1 -o comm=
 ```
 
-If it prints `systemd`, continue. Otherwise, open `/etc/wsl.conf` in Ubuntu with `sudo nano /etc/wsl.conf` and add the following section while preserving any existing settings:
+If it prints `systemd`, continue. Otherwise, open `/etc/wsl.conf` in Ubuntu with `sudo nano /etc/wsl.conf`. Add `systemd=true` to an existing `[boot]` section, or add this section if none exists; preserve the other settings:
 
 ```ini
 [boot]
@@ -85,6 +85,8 @@ sudo apt install -y fontconfig openjdk-21-jdk maven wget
 java -version
 mvn -version
 ```
+
+Expect Java 21 or newer and Maven 3.8 or newer.
 
 Then follow the official page's Debian/Ubuntu LTS repository steps, install `jenkins`, and start it:
 
@@ -146,6 +148,21 @@ sudo -u jenkins docker info
 
 If the Jenkins service user cannot access the daemon, stop here and resolve the Docker Desktop socket/group access before enabling pipeline image stages. Do not change socket permissions with `chmod 666`.
 
+Check the current socket owner/group and Jenkins memberships:
+
+```bash
+stat -c '%A %U %G %n' /var/run/docker.sock
+id jenkins
+```
+
+If the socket group is `docker`, add Jenkins to that group and restart Jenkins, then verify again:
+
+```bash
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+sudo -u jenkins docker info
+```
+
 For registry push, create a Docker Hub repository named `customer-usage-alert-portal`. In Jenkins **Manage Jenkins → Credentials**, add a username/password credential with ID `dockerhub-creds`; use a Docker Hub access token as the password. Do not paste the token into chat or commit it. In a parameterized build, set `DOCKERHUB_REPO` to `YOUR-USERNAME/customer-usage-alert-portal`. First run with `BUILD_IMAGE=true`, `PUSH_IMAGE=false`, `DEPLOY_LOCAL=false`. Then test `PUSH_IMAGE=true`. Enable `DEPLOY_LOCAL=true` only when the Jenkins agent's Docker daemon is the intended target and port 8085 is free. Expected deployment health is `http://localhost:8085/actuator/health` with status `UP`. Save each actual build number, pushed tag, console, registry page, and health output.
 
 ## Tasks 13–14: Ansible provisioning, idempotency, and rollback
@@ -160,6 +177,7 @@ export PATH="$HOME/.local/bin:$PATH"
 ansible --version
 ansible-galaxy collection install -r Task-13_Config-Management/requirements.yml
 docker compose build portal
+docker compose down
 ```
 
 Run provisioning twice, saving both real outputs:
@@ -173,7 +191,7 @@ docker ps --filter name=customer-usage-alert-portal | tee screenshots/ansible-co
 
 Enter your Ubuntu sudo password only at the local prompt. The first run should create packages, the operator, directories, and the container. The unchanged second run should report `changed=0`; health should return `"status":"UP"`. If testing on a native Ubuntu VM that should receive its own Docker Engine, add `-e manage_docker_engine=true` to each Ansible command. Do not set that option in WSL when Docker Desktop integration is enabled.
 
-If the Task 11 Compose container is still running, stop that Compose deployment first with `docker compose down`; Compose and Ansible use the same container name. Compose stores its data in a named volume, while the Ansible playbook uses `/opt/customer-usage-alert-portal/data`, so treat them as separate demo deployments.
+Compose and Ansible use the same container name. Compose stores its data in a named volume, while the Ansible playbook uses `/opt/customer-usage-alert-portal/data`, so treat them as separate demo deployments.
 
 For rollback, first push at least two immutable image tags through Jenkins, then use their real values below. The Ansible playbook does not pull images automatically:
 
