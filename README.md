@@ -11,10 +11,11 @@ A small customer operations portal that records data usage events, highlights cu
 - Search records by customer name, customer ID, or plan.
 - Show customer count, alert count, and average quota usage.
 - Open a customer detail view with usage percentage and status explanation.
-- Flag usage at 80% or above as a warning and usage at or above quota as exceeded.
+- Flag usage at a configurable percentage (80% by default) as a warning and usage at or above quota as exceeded.
 - Seed synthetic sample data so the dashboard is useful on first start.
 - Expose JSON endpoints for usage records, alerts, summary, and alert simulation.
 - Persist local/container data to an H2 database file.
+- Configure the warning threshold with ALERT_THRESHOLD_PERCENT (0–100; default 80).
 
 ## Technology
 

@@ -34,7 +34,7 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 - [x] Define the selected stack, data model, and REST API list.
 - [x] Provide local setup and health-check instructions.
 - [x] Implement the working Spring Boot application in src/.
-- [x] Run the app locally and save the local setup screenshot.
+- [x] Run the app locally and save the local setup screenshot (browser acceptance completed by Atharv).
 
 **Deliverable:** SRS, diagrams, model/API notes, and a running local setup.
 
@@ -46,14 +46,14 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 - [x] Prepare a meaningful first commit message and issue list.
 - [x] Create the GitHub repository, push main/develop, create the five backlog issues, and save repository/issue evidence.
 
-**Deliverable:** Repository URL, README, initial commit, issues, and branch policy.
+**Deliverable:** Repository URL, README, initial commit, issues, and branch policy. PR review/merge evidence is tracked under Task 5.
 
 ## TASK 5 — Feature Development with Branching
 **Folder:** Task-05_Feature-Branching/
 
 - [x] Implement dashboard, search, event entry, and detail workflow.
 - [x] Document the feature-branch/PR review workflow.
-- [ ] Push the feature branch, open a PR to develop, review it, merge it, and capture evidence.
+- [x] Publish the feature branch, open a PR to develop, review it, merge it, and capture GitHub evidence (PR #6).
 
 **Deliverable:** Working first feature, branch, PR review, and merge evidence.
 
@@ -62,7 +62,7 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 
 - [x] Implement all five MVP functions and alert thresholds.
 - [x] Document a second feature branch, conflict-resolution exercise, and v1.0 tag.
-- [ ] Perform the GitHub PR/conflict/tag exercise and save its real terminal/GitHub evidence.
+- [x] Merge the second feature PR (#7), record the actual rebase conflict resolution, and create the v1.0 release tag; see screenshots/git-conflict-resolution.txt and the GitHub PR history.
 
 **Deliverable:** Functional MVP, resolved conflict, tag, and updated backlog.
 
@@ -90,7 +90,7 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 - [x] Write the automated dashboard/form smoke and threshold tests; document live search/save/detail checks.
 - [x] Implement a Selenium WebDriver markup/form smoke test and failure screenshot capture.
 - [x] Run mvn clean verify locally and save the Surefire summary.
-- [x] Run the live search/save/detail checks in a local browser and capture evidence.
+- [x] Run the live search/save/detail checks in a local browser and capture evidence (completed by Atharv).
 
 **Deliverable:** Test plan, Selenium scripts, Maven report, and failure screenshot mechanism.
 
@@ -150,4 +150,4 @@ Checkboxes indicate repository artifacts prepared here. A checked item does not 
 
 ## Evidence filenames
 
-Save actual screenshots under screenshots/ using names such as repo-home.png, issues.png, pr-merged.png, local-dashboard.png, jenkins-build.png, jenkins-tests.png, docker-image.png, container-health.png, ansible-first-run.png, ansible-idempotent.png, and rollback.png.
+Actual screenshots are saved under screenshots/. Additional evidence should be captured as actual GitHub, Jenkins, Docker Hub, and terminal output after those services run.

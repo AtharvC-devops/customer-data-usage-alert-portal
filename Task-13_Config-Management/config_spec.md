@@ -12,7 +12,7 @@ Disposable Ubuntu/Debian VM or WSL Linux instance. The Ansible inventory can use
 | User | appuser exists and belongs to the docker group |
 | Application folders | /opt/customer-usage-alert-portal; its data directory is owned by container UID/GID 10001 |
 | Log folder | /var/log/customer-usage-alert-portal |
-| Runtime configuration | SERVER_PORT=8085, database file under /data |
+| Runtime configuration | SERVER_PORT=8085, database file under /data, ALERT_THRESHOLD_PERCENT=80 by default |
 | Ports | 8085 published by the portal; 8080 is reserved if Jenkins shares the VM |
 | Services | Docker enabled and running; portal container restarted unless stopped |
 | Image | app_image supplied as a versioned image, never only latest for rollback evidence |

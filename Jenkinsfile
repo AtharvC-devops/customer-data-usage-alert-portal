@@ -12,6 +12,7 @@ pipeline {
         booleanParam(name: 'PUSH_IMAGE', defaultValue: false, description: 'Push the versioned image and latest to Docker Hub')
         booleanParam(name: 'DEPLOY_LOCAL', defaultValue: false, description: 'Replace the local portal container on the Jenkins agent')
         string(name: 'DOCKERHUB_REPO', defaultValue: 'YOUR-USERNAME/customer-usage-alert-portal', description: 'Docker Hub namespace and repository')
+        string(name: 'ALERT_THRESHOLD_PERCENT', defaultValue: '80', description: 'Usage percentage that raises a warning (0-100)')
     }
 
     stages {
@@ -72,7 +73,7 @@ pipeline {
                 sh '''
                     set -eu
                     docker rm -f customer-data-usage-alert-portal || true
-                    docker run -d --name customer-data-usage-alert-portal --restart unless-stopped -p 8085:8085 -e SERVER_PORT=8085 -e DB_URL="jdbc:h2:file:/data/usage-alert;AUTO_SERVER=TRUE" -v usage-alert-data:/data "usage-alert:$BUILD_NUMBER"
+                    docker run -d --name customer-data-usage-alert-portal --restart unless-stopped -p 8085:8085 -e SERVER_PORT=8085 -e DB_URL="jdbc:h2:file:/data/usage-alert;AUTO_SERVER=TRUE" -e ALERT_THRESHOLD_PERCENT="$ALERT_THRESHOLD_PERCENT" -v usage-alert-data:/data "usage-alert:$BUILD_NUMBER"
                     for attempt in $(seq 1 20); do
                       if curl --fail --silent http://localhost:8085/actuator/health >/dev/null; then
                         exit 0

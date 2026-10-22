@@ -30,6 +30,7 @@ public class PortalController {
         model.addAttribute("alerts", service.findAlerts());
         model.addAttribute("summary", service.summarize(records));
         model.addAttribute("query", q == null ? "" : q);
+        model.addAttribute("alertThresholdPercent", service.getWarningThresholdPercent());
         model.addAttribute("newUsage", new UsageRecord());
         return "dashboard";
     }
@@ -37,6 +38,7 @@ public class PortalController {
     @GetMapping("/usage/{id}")
     public String detail(@PathVariable long id, Model model) {
         model.addAttribute("usage", service.findById(id));
+        model.addAttribute("alertThresholdPercent", service.getWarningThresholdPercent());
         return "usage-detail";
     }
 
@@ -50,6 +52,7 @@ public class PortalController {
             model.addAttribute("alerts", service.findAlerts());
             model.addAttribute("summary", service.summarize(records));
             model.addAttribute("query", "");
+            model.addAttribute("alertThresholdPercent", service.getWarningThresholdPercent());
             return "dashboard";
         }
         service.create(record);
