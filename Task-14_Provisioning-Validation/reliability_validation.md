@@ -32,7 +32,7 @@ ansible-playbook -i Task-13_Config-Management/inventory.ini Task-13_Config-Manag
 ansible-playbook -i Task-13_Config-Management/inventory.ini Task-13_Config-Management/setup.yml --ask-become-pass
 ```
 
-If a Task 11 Compose container is running, run `docker compose down` before Ansible because both configurations use the same container name. Compose uses its named data volume; Ansible uses `/opt/customer-usage-alert-portal/data`, so they are separate demo deployments. The first Ansible run should create the required packages, operator, directories, and container. The second run should report `changed=0` (or no changed tasks). Then verify the service:
+The `docker compose down` command is included above because both configurations use the same container name. Compose uses its named data volume; Ansible uses `/opt/customer-usage-alert-portal/data`, so they are separate demo deployments. The first Ansible run should create the required packages, operator, directories, and container. The second run should report `changed=0` (or no changed tasks). Then verify the service:
 
 ```bash
 curl --fail http://localhost:8085/actuator/health
