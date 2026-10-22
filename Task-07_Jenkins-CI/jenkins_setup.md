@@ -9,7 +9,7 @@ On Ubuntu, install the current Jenkins LTS package by following the official Jen
 ## Pipeline job
 
 1. In Jenkins, create a Pipeline job named customer-usage-alert-portal.
-2. Configure Pipeline script from SCM, select Git, provide the real repository URL, and select main or develop.
+2. Configure Pipeline script from SCM, select Git, provide the real repository URL, and select `develop`.
 3. Set Script Path to Jenkinsfile.
 4. Enable the GitHub webhook trigger if the Jenkins server is reachable from GitHub. For a local/private host, use Poll SCM or run the job manually.
 5. Save and build with default parameters.
